@@ -1,16 +1,10 @@
 #include <iostream>
-#include "train.h"
+#include <vector>
+#include "station.h"
 
 int main()
 {
-    Train test;
-
-
-    test.setTravelTime(3);
-
-    std::thread t(std::ref(test));
-
-
-    t.join();
-
+    RailwayStation station(3);
+    station.setTravelTime();
+    return 0;
 }

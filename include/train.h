@@ -26,6 +26,10 @@ public:
         }
 
     }
+    char getRoute()
+    {
+        return _route;
+    }
 
 };
 
