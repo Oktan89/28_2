@@ -10,10 +10,14 @@ class RailwayStation
 {
     int _sizeTrain;
     std::vector<Train *> _train;
+    std::vector<std::thread> _thred_train;
     std::mutex station;
-    void dispatcher(std::string message);
+    void dispatcher(const char& route);
+    bool trainEmpty() const;
+    friend class Train;
 public:
     RailwayStation(int sizeTrain = 0);
     ~RailwayStation();
     void setTravelTime();
+    void startTrain();
 };
