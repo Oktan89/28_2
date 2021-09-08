@@ -64,12 +64,20 @@ void RailwayStation::startTrain()
 
 void RailwayStation::dispatcher(const char& route)
 {
+    
     std::string answer, train;
-    train = train + route;
-    std::cout << "The train " << train << " is waiting for a free path"<<std::endl;
+    train = "The train ";
+    train += route;
+    train += " is waiting for a free path";
+    
+    std::cout << train << std::endl;
+    
     station.lock();
     std::cout<<"Enter depart train "<< train <<std::endl;
     std::cin >> answer;
     station.unlock();
-    std::cout<<"The train "<<train<<" departs from the station"<<std::endl;
+    
+    std::cout<<"The train "<< route <<" departs from the station"<<std::endl;
+   
 }
+

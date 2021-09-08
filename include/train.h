@@ -20,14 +20,20 @@ public:
         _travel_time = travel_time;
     }
     void operator() (RailwayStation &station)
-    {
+    {   
+       
         std::cout<<"Train "<<_route<<" is on its way arrival is expected in "<<_travel_time<<" seconds"<<std::endl;
+        
         for(int i = 0; i < _travel_time; ++i)
         {
             std::this_thread::sleep_for(std::chrono::seconds(1));
         }
-        std::string message = message + "The train " + _route + " arrived at the station";
+        std::string message ="The train "; 
+        message += _route;
+        message += " arrived at the station";
+        
         std::cout<<message<<std::endl;
+       
         station.dispatcher(_route);
     }
     char getRoute()
