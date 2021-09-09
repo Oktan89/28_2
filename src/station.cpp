@@ -59,25 +59,40 @@ void RailwayStation::startTrain()
     for(int i = 0; i < _train.size(); ++i)
     {
         _thred_train.push_back(std::thread(std::ref(*_train[i]), std::ref(*this)));
+    
     }
 }
 
 void RailwayStation::dispatcher(const char& route)
 {
-    
-    std::string answer, train;
-    train = "The train ";
-    train += route;
-    train += " is waiting for a free path";
-    
-    std::cout << train << std::endl;
-    
+    if(_close)
+    {
+        std::string train;
+        train = "The train ";
+        train += route;
+        train += " is waiting for a free path";
+        std::cout << train << std::endl;
+    }
+       
     station.lock();
-    std::cout<<"Enter depart train "<< train <<std::endl;
-    std::cin >> answer;
+    {
+        _close = true;
+        std::string answer, train;
+        train ="The train "; 
+        train += route;
+        train += " arrived at the station";
+        std::cout<<train<<std::endl;
+        train = "Enter depart train ";
+        train += route;
+        std::cout<<train<<std::endl;
+        std::cin >> answer;
+        train = "The train ";
+        train += route;
+        train += " departs from the station";
+        std::cout<<train<<std::endl;
+        _close = false;
+    }
     station.unlock();
-    
-    std::cout<<"The train "<< route <<" departs from the station"<<std::endl;
-   
+
 }
 

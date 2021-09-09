@@ -9,6 +9,7 @@ class Train;
 class RailwayStation
 {
     int _sizeTrain;
+    bool _close{false};
     std::vector<Train *> _train;
     std::vector<std::thread> _thred_train;
     std::mutex station;

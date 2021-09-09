@@ -21,24 +21,28 @@ public:
     }
     void operator() (RailwayStation &station)
     {   
-       
-        std::cout<<"Train "<<_route<<" is on its way arrival is expected in "<<_travel_time<<" seconds"<<std::endl;
+        std::string message = "The train ";
+        message += _route;
+        message += " is on its way arrival is expected in ";
+        message += std::to_string(_travel_time);
+        message += " seconds";
+        std::cout<<message<<std::endl;
         
+            
         for(int i = 0; i < _travel_time; ++i)
         {
             std::this_thread::sleep_for(std::chrono::seconds(1));
         }
-        std::string message ="The train "; 
-        message += _route;
-        message += " arrived at the station";
         
-        std::cout<<message<<std::endl;
-       
         station.dispatcher(_route);
     }
     char getRoute()
     {
         return _route;
+    }
+    std::size_t getTravelTime()
+    {
+        return _travel_time;
     }
 
 };
